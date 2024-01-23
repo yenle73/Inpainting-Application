@@ -1,0 +1,69 @@
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-family: sans-serif;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+}
+
+#toolbar {
+    width: 513px;
+    height: 50px;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    background-color: grey;
+    color: white;
+}
+
+.radcontrol {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(212, 211, 211);
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+}
+
+#rad {
+    float: left;
+}
+
+#save {
+    float: right;
+    top: 0;
+    margin-right: 20px;
+    height: 30px;
+    padding: 8px;
+    background-color: rgb(173, 171, 171);
+    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 2px 2px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+#save:hover {
+    background-color: rgb(43, 146, 177);
+}
+
+/* Style for the result box */
+.result-box {
+    border: 1px solid #ddd; /* Border color */
+    border-radius: 8px; /* Border radius for rounded corners */
+    background-color: #f9f9f9; /* Background color */
+    padding: 20px; /* Padding for spacing inside the result box */
+    margin: 20px auto; /* Center the result box horizontally with some margin */
+}
+
+/* Style for the image container */
+.image-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Style for each image wrapper */
+.image-wrapper {
+    text-align: center;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    {% if result_path and upload_path %}
+        <hr>
+        <h2 style="text-align: center;">Result</h2>
+        
+        <div class="result-box">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <h3 style="color: #00a013; text-align: center;">Uploaded Image</h3>
+                    <img src="{{ upload_path }}" alt="Uploaded Image" style="max-width: 100%; border-radius: 8px;">
+                </div>
+
+                <div class="image-wrapper">
+                    <h3 style="color: #00a013; text-align: center;">Result Image</h3>
+                    <img src="{{ result_path }}" alt="Result Image" style="max-width: 100%; border-radius: 8px;">
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</body>
+</html>

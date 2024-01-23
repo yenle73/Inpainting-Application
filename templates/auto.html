@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Detection</title>
+    <link rel="stylesheet" href="/static/css/home.css">
+    <style>
+        body {
+            background-color: rgb(13, 17, 51);
+            color: white;
+            justify-content: center;
+            align-items: center;
+        }
+        nav {
+            background-color: black;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        canvas {
+            position: absolute;
+            border: 1px dashed white;
+            margin-left: 200px;
+        }
+        img {
+            margin-left: 1000px;
+            border: 1px dashed white;
+        }
+        .column-container {
+            display: flex;
+            gap: 300px;
+            margin-bottom: 30px;
+            margin-top: 30px;
+        }
+
+        .column {
+            width: 512px;
+            height: 512px; 
+            text-align: center;
+            line-height: 50px; 
+        }
+        .btn {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: rgba(2, 2, 2, 0.5) 0 2px 5px 0;
+            box-sizing: border-box;
+            color: rgb(255 125 59);
+            cursor: pointer;
+            display: inline-block;
+            font-family: "Amazon Ember",sans-serif;
+            font-size: 13px;
+            line-height: 29px;
+            padding: 0 10px 0 11px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: middle;
+            width: 100px;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+
+        .btn:hover {
+            background-color: #f7fafa;
+        }
+
+        .btn:focus {
+            border-color: #008296;
+            box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+            outline: 0;
+        }
+
+        .btn1 {
+            background-color: #fff;
+            width: 25px;
+            color: rgb(255 125 59);
+            box-shadow: rgba(2, 2, 2, 0.5) 0 2px 5px 0;
+            font-family: "Amazon Ember",sans-serif;
+        }
+    </style>
+</head>
+<body style="margin: 0;">
+
+    <div style="background-color: black;" class="py-5 text-color-secondary font-bond text-3xl">
+        <a href="#home">
+            <span style="margin-left: 20px;" class="text-color-white">Auto</span>Dectect
+        </a>
+    </div>
+
+    <nav>
+        <button class="btn" type="button" onclick="autoDetect()">Auto Detect</button>
+        <button class="btn" type="button" onclick="generateImage()">Generate</button>
+        <button class="btn" type="button" onclick="downloadGeneratedImage()">Download</button>
+    </nav>
+
+    <div class="column-container">
+    <canvas class="column" id="canvas" width="512" height="512"></canvas>
+    <img class="column" id="generatedImage" src="/static/images/result.png" alt="Generated Image">
+    </div>
+    
+    <div style="margin-left: 170px">
+    <label for="content" class="file-input-label">Choose an image:</label>
+    <input type="file" id="fileInput" name="fileInput" accept="image/*" required>
+    <button class="btn" type="button" id="loadButton" onclick="loadImage()">Load Image</button>
+    </div>
+
+    <div id="resultContainer"></div>
+
+    
+
+
+    <script src="/static/canvas.js"></script>
+
+    <script>
+    var img = new Image();
+
+    var loadButton = document.getElementById('loadButton');
+    loadButton.addEventListener('click', loadImage());
+
+    function loadImage() {
+    // Lấy tham chiếu đến input file
+    var fileInput = document.getElementById('fileInput');
+
+    // Đảm bảo người dùng đã chọn một file
+    if (fileInput.files.length > 0) {
+      // Đọc file hình ảnh
+      var file = fileInput.files[0];
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        // Thiết lập nguồn hình ảnh từ dữ liệu đọc được
+        img.src = e.target.result;
+      };
+
+      // Đọc file dưới dạng Data URL
+      reader.readAsDataURL(file);
+    }
+  }
+
+  img.onload = function() {
+    c.drawImage(img, 0, 0, canvas.width, canvas.height);
+  }
+
+
+  let autoDetectData;
+
+  function autoDetect() {
+    const formData = new FormData();
+    const fileInput = document.getElementById('fileInput');
+    formData.append('fileInput', fileInput.files[0]);
+
+    // Make a fetch request to your API endpoint
+    fetch('/auto-detect', {
+        method: 'POST', 
+        body: formData,
+    })
+    .then(response => {
+        // Check if the response status is in the 2xx range
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // assuming your API returns JSON
+    })
+    .then(data => {
+        // Handle the data returned by the API
+        console.log(data);
+
+        autoDetectData = data;
+
+        for (let i = 0; i < data.length; i++) {
+            drawCircleOnCanvas(data[i].segments);
+    }
+        displayResultOnScreen(data);
+
+
+    })
+    .catch(error => {
+        // Handle errors during the fetch
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
+
+function drawCircleOnCanvas(segments) {
+    c.fillStyle = "rgba(255, 0, 0, 0.5)";
+    c.lineWidth = 20;
+
+    const x = segments.x;
+    const y = segments.y;
+
+    c.beginPath();
+    //c.moveTo(0, 0);
+
+    for (let i = 0; i < x.length; i++) {
+        c.lineTo(x[i], y[i]);
+    }
+    c.closePath();
+    c.fillStyle = "rgba(255, 0, 0, 0.5)";
+    c.lineWidth = 20;
+    c.fill();
+}
+    
+    // Handle image preview when user selects a file
+    const fileInput = document.getElementById('fileInput');
+    const uploadedImage = document.getElementById('uploadedImage');
+
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                uploadedImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    })
+
+function displayResultOnScreen(data) {
+        // Get the result container
+
+        var resultContainer = document.getElementById('resultContainer');
+
+
+        // Create HTML content based on the API result
+        var htmlContent = `
+            <h3>${data[0].id}. Object: ${data[0].name} | Confidence: ${data[0].confidence}</h3>
+            <h3>${data[1].id}. Object: ${data[1].name} | Confidence: ${data[1].confidence}</h3>
+            <h3>${data[2].id}. Object: ${data[2].name} | Confidence: ${data[2].confidence}</h3>
+        `;
+
+
+
+        // Set the HTML content to the result container
+        resultContainer.innerHTML = htmlContent;
+    }
+
+function displayImage(data) {
+    var imageContainer = document.getElementById('imageContainer');
+
+    var htmlContent = `
+    <img ${data}>
+    `;
+}
+
+function drawMask(segments) {
+    c.strokeStyle = "black";
+    c.lineWidth = 20;
+
+    const x = segments.x;
+    const y = segments.y;
+
+    c.beginPath();
+    //c.moveTo(0, 0);
+
+    for (let i = 0; i < x.length; i++) {
+        c.lineTo(x[i], y[i]);
+    }
+    c.closePath();
+    c.fillStyle = "black";
+    c.lineWidth = 20;
+    c.fill();
+}
+
+let imageUrl = null;
+function generateImage() {
+    c.clearRect(0, 0, canvas.width, canvas.height);
+
+    c.fillStyle = 'white';
+    c.fillRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < autoDetectData.length; i++) {
+        drawMask(autoDetectData[i].segments);
+    }
+
+    var pointsDataUrl = canvas.toDataURL('image/png');
+
+    var fileInput = document.getElementById('fileInput');
+
+    var formData = new FormData();
+    formData.append('fileInput', fileInput.files[0]);
+    formData.append('pointsInput', pointsDataUrl);
+
+    c.clearRect(0, 0, canvas.width, canvas.height);
+
+    fetch('/generate-image', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.blob();
+    })
+    .then (blob => {
+        console.log(blob);
+        imageUrl = URL.createObjectURL(blob);
+        document.getElementById('generatedImage').src = imageUrl;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    })
+    }
+
+    function downloadGeneratedImage() {
+        if (imageUrl) {
+            const downloadLink = document.createElement('a');
+            downloadLink.href = imageUrl;
+            downloadLink.download = 'generated_image.png';
+            downloadLink.click();
+        }
+    }
+
+    </script>
+
+
+
+</body>
+</html>

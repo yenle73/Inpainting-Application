@@ -10,5 +10,11 @@
 3. Nguyễn Tường Duy - 21520782
 
 ## Tổng quan đồ án
-![GitHub language count](https://img.shields.io/github/languages/count/yenle73/Inpainting-Application/)
+* Tên đồ án: Ứng dụng web xóa vật thể khỏi ảnh
+* Ngôn ngữ lập trình: Python, HTML, CSS, JavaScript
+* Input: Một bức ảnh và mặt nạ xác định vị trí vật thể cần xóa
+* Output: Ảnh đã xóa vật thể
+
+## Getting Started
+
 

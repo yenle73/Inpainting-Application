@@ -10,5 +10,5 @@
 3. Nguyễn Tường Duy - 21520782
 
 ## Tổng quan đồ án
-![GitHub language count](https://img.shields.io/github/languages/count/yenle73/https://github.com/yenle73/Inpainting-Application/)
+![GitHub language count](https://img.shields.io/github/languages/count/yenle73/Inpainting-Application/)
 

@@ -1,4 +1,4 @@
-![image](https://github.com/yenle73/Inpainting-Application/assets/128300242/44b49b83-4172-4ee3-b743-635c1f468b90)
+![image](https://github.com/yenle73/Inpainting-Application/assets/128300242/c0642280-a8a3-42e7-b3e2-450fe869f02a)
 
 
 ## Giới thiệu môn học

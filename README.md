@@ -1,3 +1,6 @@
+![image](https://github.com/yenle73/Inpainting-Application/assets/128300242/44b49b83-4172-4ee3-b743-635c1f468b90)
+
+
 ## Giới thiệu môn học
 * Tên môn học: Xử lý ảnh và Ứng dụng - Image Processing and Application
 * Mã môn học: CS406
@@ -15,7 +18,10 @@
 * Input: Một bức ảnh và mặt nạ xác định vị trí vật thể cần xóa
 * Output: Ảnh đã xóa vật thể
 
-## Getting Started
+## Kiến trúc hệ thống
+![image](https://github.com/yenle73/Inpainting-Application/assets/128300242/101bdb97-9fb9-48ff-9ea8-7a4a7396a3d2)
+
+## Demo
 ### 1. Clone project
 Clone project repository về máy:
 

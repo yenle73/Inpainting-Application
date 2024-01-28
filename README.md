@@ -1,5 +1,14 @@
-## About this project
-Image Inpainting Application, a project developed for the CS406 - Image Processing and Application course. This repository hosted an advanced Inpainting Application designed to remove unwanted objects from photos using the powerful Mask-Aware Transformer (MAT) from the paper [MAT: Mask-Aware Transformer for Large Hole Image Inpainting](https://github.com/fenglinglwb/MAT) (CVPR 2022 Best Paper Finalist, Oral).
+## Giới thiệu môn học
+* Tên môn học: Xử lý ảnh và Ứng dụng - Image Processing and Application
+* Mã môn học: CS406
+* Mã lớp: CS406.O12.KHCL
+* Giảng viên: Ths. Đỗ Văn Tiến
 
-![image](https://github.com/yenle73/Inpainting-Application/assets/128300242/349e03e2-6d18-40d4-9d37-0cdd1b5177dc)
+## Thành viên
+1. Lê Thị Kim Yến - 21521695
+2. Phạm Trâm Anh - 21520587
+3. Nguyễn Tường Duy - 21520782
+
+## Tổng quan đồ án
+![GitHub language count](https://img.shields.io/github/languages/count/yenle73/https://github.com/yenle73/Inpainting-Application/)
 

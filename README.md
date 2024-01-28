@@ -33,7 +33,7 @@ Tạo môi trường ảo và install các thư viện cần thiết trong file 
 ```pip install -r requirements.txt```
 
 ### 3. Tải pretraind models
-Tải pretrained models tại [đây](https://mycuhk-my.sharepoint.com/:f:/g/personal/1155137927_link_cuhk_edu_hk/EuY30ziF-G5BvwziuHNFzDkBVC6KBPRg69kCeHIu-BXORA?e=7OwJyE). Sau đó, tạo folder "pretrained" và di chuyển các file model vào đây.
+Tải pretrained models tại [đây](https://mycuhk-my.sharepoint.com/:f:/g/personal/1155137927_link_cuhk_edu_hk/EuY30ziF-G5BvwziuHNFzDkBVC6KBPRg69kCeHIu-BXORA?e=7OwJyE). Sau đó, tạo folder "pretrained" và di chuyển các file models vào đây.
 
 ### 4. Chạy file main
 
